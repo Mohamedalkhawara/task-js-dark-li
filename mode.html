@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark & Light Mode </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        body.light-mode {
+            background-color: #ffffff;
+            color: black;
+        }
+
+        body.dark-mode {
+            background-color: #000000;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button id="lightMode">Light Mode</button>
+        <button id="darkMode">Dark Mode</button>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const body = document.body;
+            const lightModeButton = document.getElementById('lightMode');
+            const darkModeButton = document.getElementById('darkMode');
+
+            const currentMode = sessionStorage.getItem('mode') || 'light';
+
+            body.classList.add(currentMode + '-mode');
+
+            lightModeButton.addEventListener('click', () => {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                sessionStorage.setItem('mode', 'light');
+            });
+
+            darkModeButton.addEventListener('click', () => {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                sessionStorage.setItem('mode', 'dark');
+            });
+        });
+    </script>
+</body>
+</html>
