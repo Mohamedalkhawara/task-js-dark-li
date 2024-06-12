@@ -29,33 +29,46 @@
             background-color: #000000;
             color: #fff;
         }
+
+        body.blue-mode {
+            background-color: #30179e;
+            color: #4145a5;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <button id="lightMode">Light Mode</button>
         <button id="darkMode">Dark Mode</button>
+        <button id="blueMode">Blue Mode</button>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             const body = document.body;
             const lightModeButton = document.getElementById('lightMode');
             const darkModeButton = document.getElementById('darkMode');
+            const blueModeButton = document.getElementById('blueMode');
 
             const currentMode = sessionStorage.getItem('mode') || 'light';
 
             body.classList.add(currentMode + '-mode');
 
             lightModeButton.addEventListener('click', () => {
-                body.classList.remove('dark-mode');
+                body.classList.remove('dark-mode', 'blue-mode');
                 body.classList.add('light-mode');
                 sessionStorage.setItem('mode', 'light');
             });
 
             darkModeButton.addEventListener('click', () => {
-                body.classList.remove('light-mode');
+                body.classList.remove('light-mode', 'blue-mode');
                 body.classList.add('dark-mode');
                 sessionStorage.setItem('mode', 'dark');
+            });
+
+            blueModeButton.addEventListener('click', () => {
+                body.classList.remove('light-mode', 'dark-mode');
+                body.classList.add('blue-mode');
+                sessionStorage.setItem('mode', 'blue');
             });
         });
     </script>
